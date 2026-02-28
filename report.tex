@@ -1,0 +1,837 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============ PACKAGES ============
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage{array}
+
+% ============ PAGE SETUP ============
+\geometry{margin=2.5cm, top=3cm, bottom=3cm}
+
+% ============ HYPERREF ============
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+    pdftitle={QuickBite - HCI Design Report},
+    pdfauthor={Y.Niranjan},
+    bookmarks=true
+}
+
+% ============ SECTION FORMATTING ============
+\titleformat{\section}
+    {\Large\bfseries}{\thesection.}{8pt}{}
+\titleformat{\subsection}
+    {\large\bfseries}{\thesubsection}{8pt}{}
+\titleformat{\subsubsection}
+    {\normalsize\bfseries}{\thesubsubsection}{6pt}{}
+
+% ============ HEADER / FOOTER ============
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small QuickBite -- HCI Design Report}
+\fancyhead[R]{\small Y.Niranjan | CS23B1076}
+\fancyfoot[C]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ============ DOCUMENT ============
+\begin{document}
+
+% ============ TITLE PAGE ============
+\begin{titlepage}
+    \begin{center}
+        \vspace*{2cm}
+
+        {\fontsize{36}{40}\selectfont\bfseries QuickBite}\\[8pt]
+        {\Large Online Food Delivery Application}
+
+        \vspace{2cm}
+
+        {\LARGE\bfseries HCI Design Report}\\[6pt]
+        {\large Interactive Design Layout \& Scheme}\\[4pt]
+        {\normalsize Mid-Semester Design Project}
+
+        \vspace{3cm}
+
+        \begin{tabular}{rl}
+            \textbf{Name:} & Y.Niranjan \\[6pt]
+            \textbf{Roll No:} & CS23B1076 \\[6pt]
+            \textbf{Course:} & Human-Computer Interaction (HCI) \\[6pt]
+            \textbf{Assignment:} & Mid-Semester Design Project \\[6pt]
+            \textbf{Domain:} & Online Food Delivery Application \\[6pt]
+            \textbf{Date:} & February 28, 2026 \\
+        \end{tabular}
+
+        \vfill
+
+        {\small 12 Interactive Screens \textbullet{} Complete Prototype \textbullet{} HTML/CSS/JS}
+    \end{center}
+\end{titlepage}
+
+% ============ TABLE OF CONTENTS ============
+\newpage
+\tableofcontents
+\newpage
+
+% ===================================================================
+\section{Introduction}
+
+\textbf{QuickBite} is a food delivery mobile application designed to provide a simple and intuitive food ordering experience. The design covers the complete user journey from onboarding to order tracking, with all decisions grounded in HCI principles.
+
+\begin{itemize}
+    \item 12 core screens covering the full ordering flow
+    \item Built as an interactive HTML/CSS/JS prototype
+    \item Mobile-first layout (390 x 844px)
+    \item Typography: Poppins (Google Fonts)
+    \item Icons: Font Awesome 6
+\end{itemize}
+
+\subsection{Screens Overview}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{c l X}
+\toprule
+\textbf{\#} & \textbf{Screen} & \textbf{Purpose} \\
+\midrule
+1 & Splash Screen & Brand identity and loading indicator \\
+2 & Onboarding (3 slides) & Feature introduction (Browse, Order, Enjoy) \\
+3 & Login / Sign Up & Phone OTP authentication with social login options \\
+4 & Home Dashboard & Main hub with categories and restaurants \\
+5 & Search Screen & Discovery with filters, sort, trending \\
+6 & Restaurant Listing & Menu browsing, customization, add to cart \\
+7 & Cart Screen & Order review, coupon, bill breakdown, checkout \\
+8 & Order Confirmation & Success screen with order details \\
+9 & Order Tracking & Real-time status, map, delivery partner info \\
+10 & Order History & Past orders, reorder, rate and review \\
+11 & Profile / Account & Settings, addresses, payments \\
+12 & Help \& Support & FAQ, live chat, issue reporting \\
+\bottomrule
+\end{tabularx}
+\caption{Complete list of designed screens}
+\end{table}
+
+\subsection{Color Palette}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l l l l}
+\toprule
+\textbf{Color} & \textbf{Hex Code} & \textbf{Role} & \textbf{Usage} \\
+\midrule
+Orange & \texttt{\#FF6B35} & Primary & Buttons, CTAs, branding \\
+Red & \texttt{\#D63031} & Secondary & Errors, offers, non-veg indicator \\
+White & \texttt{\#FFFFFF} & Background & Screen backgrounds, cards \\
+Light Gray & \texttt{\#F5F5F5} & Surface & Input fields, sections \\
+Charcoal & \texttt{\#2D3436} & Text (dark) & Headings \\
+Gray & \texttt{\#636E72} & Text (body) & Descriptions, meta info \\
+Green & \texttt{\#00B894} & Accent & Success states, ratings, veg indicator \\
+\bottomrule
+\end{tabular}
+\caption{Color palette}
+\end{table}
+
+% ===================================================================
+\newpage
+\section{80-20 Rule (Pareto Principle)}
+
+The Pareto Principle states that roughly 80\% of effects come from 20\% of causes. In QuickBite, the critical 20\% of features receive the most design attention.
+
+\subsection{Critical 20\% (Primary Focus)}
+\begin{itemize}
+    \item \textbf{Browse Food (Home):} Categories, restaurant cards, and promotional banners placed front-and-center
+    \item \textbf{Search:} Prominent search bar with filters, trending items, and recent searches
+    \item \textbf{Menu \& Add to Cart (Restaurant):} Clear menu items with one-tap add and customization popup
+    \item \textbf{Cart \& Checkout:} Price breakdown, coupon field, and prominent ``Place Order'' button
+    \item \textbf{Order Tracking:} Step-by-step progress indicator, ETA, map, and delivery partner info
+\end{itemize}
+
+\subsection{Supporting 80\% (Secondary)}
+\begin{itemize}
+    \item Profile management, order history, help \& support, notifications
+    \item Accessed through bottom navigation or nested menus
+    \item Organized but do not clutter the core ordering flow
+\end{itemize}
+
+The bottom navigation prioritizes core actions: Home, Search, Cart, Orders, Profile. The ordering flow (Browse $\to$ Select $\to$ Cart $\to$ Order $\to$ Track) is always within 1--2 taps.
+
+% ===================================================================
+\newpage
+\section{Shneiderman's 8 Golden Rules}
+
+\subsection{Rule 1: Strive for Consistency}
+\begin{itemize}
+    \item Same button styles, card patterns, corner radius, and color scheme across all 12 screens
+    \item Bottom navigation maintains identical positioning and styling everywhere
+    \item Poppins font used consistently for all text
+\end{itemize}
+
+\subsection{Rule 2: Seek Universal Usability / Enable Shortcuts}
+\begin{itemize}
+    \item ``Reorder'' button on past orders for quick repeat ordering
+    \item Saved addresses (Home, Work) for one-tap delivery selection
+    \item Recent searches displayed for quick re-search
+    \item Keyboard shortcuts (1--0 keys) in the prototype for direct screen access
+\end{itemize}
+
+\subsection{Rule 3: Offer Informative Feedback}
+\begin{itemize}
+    \item Coupon applied shows green confirmation message
+    \item Order placement shows a confirmation screen with confetti animation
+    \item Adding items updates the cart badge with a scale animation
+    \item Order tracking provides step-by-step updates with timestamps
+    \item OTP input auto-advances between fields
+\end{itemize}
+
+\subsection{Rule 4: Design Dialogs to Yield Closure}
+\begin{itemize}
+    \item Ordering flow concludes with a dedicated confirmation screen
+    \item Shows Order ID, restaurant name, estimated time, and total paid
+    \item Green checkmark with animation provides clear sense of completion
+\end{itemize}
+
+\subsection{Rule 5: Prevent Errors / Simple Error Handling}
+\begin{itemize}
+    \item Phone number input validates 10-digit format in real time
+    \item Invalid input shows clear error messages
+    \item OTP boxes auto-advance to prevent misentry
+    \item Full bill breakdown shown before placing order
+\end{itemize}
+
+\subsection{Rule 6: Permit Easy Reversal of Actions}
+\begin{itemize}
+    \item Cart items have +/- quantity controls and remove option
+    \item Delivery address changeable via ``Change'' button
+    \item Orders cancellable from the tracking screen
+    \item Back buttons on every sub-screen
+\end{itemize}
+
+\subsection{Rule 7: Keep Users in Control}
+\begin{itemize}
+    \item Veg/Non-Veg filter toggles on search and restaurant screens
+    \item Sort options (Rating, Cost, Time)
+    \item Menu category navigation pills
+    \item Customizable order options (size, toppings, special instructions)
+    \item Notification preferences toggle in profile
+\end{itemize}
+
+\subsection{Rule 8: Reduce Short-term Memory Load}
+\begin{itemize}
+    \item Cart badge on bottom nav always shows item count
+    \item Floating cart summary bar on restaurant page shows items and total
+    \item Progress indicator on tracking screen shows current status at a glance
+    \item Price breakdown in cart eliminates the need to mentally calculate totals
+    \item Food categories use emoji icons for instant recognition
+\end{itemize}
+
+% ===================================================================
+\newpage
+\section{Nielsen's 10 Usability Heuristics}
+
+\subsection{H1: Visibility of System Status}
+\begin{itemize}
+    \item Order tracking shows a 4-step progress indicator (Order Placed $\to$ Preparing $\to$ Out for Delivery $\to$ Delivered) with timestamps and ETA
+    \item Splash screen has loading animation
+    \item Banner carousel shows progress dots
+    \item Cart badge updates in real time
+\end{itemize}
+
+\subsection{H2: Match Between System and Real World}
+\begin{itemize}
+    \item Food emoji for categories (pizza, biryani, burger, etc.)
+    \item Star ratings for restaurants
+    \item Map visualization for delivery tracking
+    \item Natural language prompts (``What's on your mind?'')
+    \item Standard Veg (green dot) / Non-Veg (red triangle) symbols
+\end{itemize}
+
+\subsection{H3: User Control and Freedom}
+\begin{itemize}
+    \item Back button on every screen
+    \item Skip button on onboarding
+    \item Cancel order from tracking screen
+    \item Edit cart items and change address
+    \item Close button on all popups
+\end{itemize}
+
+\subsection{H4: Consistency and Standards}
+\begin{itemize}
+    \item Bottom tab navigation (standard mobile pattern)
+    \item Search bar at top of relevant screens
+    \item Card-based layouts throughout
+    \item Industry-standard Font Awesome icons
+\end{itemize}
+
+\subsection{H5: Error Prevention}
+\begin{itemize}
+    \item Input validation prevents invalid phone numbers before submission
+    \item Auto-advancing OTP boxes reduce entry errors
+    \item Full bill summary shown before checkout
+    \item Coupon field provides instant validity feedback
+\end{itemize}
+
+\subsection{H6: Recognition Rather Than Recall}
+\begin{itemize}
+    \item Visual food categories with emoji icons
+    \item Recent searches displayed on search screen
+    \item Restaurant cards show key info (rating, time, distance) at a glance
+    \item Order history shows past orders for easy reordering
+    \item Saved addresses labeled (Home, Work)
+\end{itemize}
+
+\subsection{H7: Flexibility and Efficiency of Use}
+\begin{itemize}
+    \item Multiple paths to find food: browse categories, search, explore recommendations, or reorder
+    \item Filters and sort for advanced users
+    \item Quick reorder bypasses the entire browse-to-cart flow
+\end{itemize}
+
+\subsection{H8: Aesthetic and Minimalist Design}
+\begin{itemize}
+    \item Clean white backgrounds with generous whitespace
+    \item Each screen focuses on its primary task
+    \item Information hierarchy: large headings, supporting details, then actions
+    \item Consistent 8px grid spacing
+\end{itemize}
+
+\subsection{H9: Help Users Recognize, Diagnose, and Recover from Errors}
+\begin{itemize}
+    \item Phone validation error states ``Please enter a valid 10-digit phone number''
+    \item Specific error messages for all failure states
+    \item Clear retry options for failed operations
+\end{itemize}
+
+\subsection{H10: Help and Documentation}
+\begin{itemize}
+    \item Dedicated Help \& Support screen with searchable FAQ accordion
+    \item Live chat, call, and email support options
+    \item Issue reporting form with order dropdown
+    \item Onboarding slides introduce key features to new users
+\end{itemize}
+
+% ===================================================================
+\newpage
+\section{Tesler's Law (Conservation of Complexity)}
+
+Tesler's Law states that every application has inherent complexity that cannot be removed --- it can only be moved. Good design moves complexity from the user to the system.
+
+\begin{itemize}
+    \item \textbf{Smart Defaults:} Default delivery address auto-selected (Home). Regular size pre-selected in customization popup. Default payment method remembered.
+    \item \textbf{Step-by-step Checkout:} The cart screen breaks checkout into distinct sections (items $\to$ coupon $\to$ address $\to$ bill $\to$ place order) instead of showing everything at once.
+    \item \textbf{Auto-computation:} Bill summary auto-calculates item total, delivery fee, taxes, discounts, and grand total. Users never need to do math.
+    \item \textbf{Customization in Modal:} Item customization (size, toppings, instructions) is contained in a popup instead of cluttering the menu list.
+    \item \textbf{Filter/Sort Defaults:} Filtering and sorting are available but optional --- the default view works well for casual users.
+\end{itemize}
+
+% ===================================================================
+\section{Serial Position Effect}
+
+People remember the first (primacy) and last (recency) items in a series best.
+
+\subsection{Primacy Effect}
+\begin{itemize}
+    \item ``Home'' placed first (leftmost) in bottom navigation --- the most-used screen
+    \item Promotional banners and offers appear first on the Home screen
+    \item ``Recommended'' category appears first in the restaurant menu
+\end{itemize}
+
+\subsection{Recency Effect}
+\begin{itemize}
+    \item ``Profile'' placed last (rightmost) in bottom navigation
+    \item ``Place Order'' button fixed at the bottom of the Cart screen --- the last visible element is the key action
+    \item Floating cart bar stays at the bottom of the Restaurant page
+\end{itemize}
+
+\subsection{Bottom Navigation Layout}
+\begin{center}
+    \textbf{Home} $|$ Search $|$ \textbf{Cart} $|$ Orders $|$ \textbf{Profile}
+\end{center}
+Home (primacy) and Profile (recency) bookend the navigation. Cart holds the center position with a badge for visual anchoring.
+
+% ===================================================================
+\newpage
+\section{Learnability (Law of Learning)}
+
+The time to complete a task decreases with practice. QuickBite is designed to be instantly learnable.
+
+\begin{itemize}
+    \item \textbf{Familiar Patterns:} Tab navigation, card-based content, search with filters, cart with quantity controls, map-based tracking --- all patterns users already know.
+    \item \textbf{Onboarding:} Three slides introduce core features: Browse $\to$ Order $\to$ Enjoy. Skip button available for returning users.
+    \item \textbf{Consistent Interactions:} Once a user learns one pattern (e.g., tapping a card), it applies everywhere. All back buttons, toggles, and action buttons behave identically across screens.
+\end{itemize}
+
+% ===================================================================
+\section{Mental Models}
+
+Mental models are internal representations of how users expect systems to work.
+
+\begin{itemize}
+    \item \textbf{Restaurant Menu Model:} The restaurant page is organized by categories (Starters, Main Course, Desserts, Beverages) with item name, description, and price --- mimicking a real menu.
+    \item \textbf{E-Commerce Cart Model:} Standard flow: add items $\to$ view cart $\to$ review $\to$ apply coupon $\to$ see total $\to$ place order. Matches the universal online shopping mental model.
+    \item \textbf{Delivery Tracking Model:} Map-based tracking with a moving rider icon, ETA, delivery partner details, and contact options --- mirrors Uber/Google Maps experience.
+\end{itemize}
+
+% ===================================================================
+\section{Closure}
+
+Closure refers to the user's need to experience a clear sense of completion after an action.
+
+\begin{itemize}
+    \item \textbf{Order Confirmation Screen:} After placing an order, users see a large green checkmark, ``Order Placed!'' heading, confetti animation, order details (ID, restaurant, ETA, total), and ``Track Your Order'' / ``Back to Home'' buttons.
+    \item \textbf{Tracking Steps:} Each step transitions from gray (upcoming) to green checkmark (completed). The progress line fills as steps complete.
+    \item \textbf{Micro-closure:} Coupon applied $\to$ green success message. Item added $\to$ badge animation. OTP sent $\to$ timer revealed. Login complete $\to$ transitions to Home.
+\end{itemize}
+
+% ===================================================================
+\newpage
+\section{Inverted Pyramid}
+
+The most important information appears first, with details in decreasing order of importance.
+
+\subsection{Home Screen Hierarchy}
+\begin{enumerate}
+    \item Location and search bar (critical context and most-used action)
+    \item Promotional banners (time-sensitive, high impact)
+    \item Food categories (primary browsing method)
+    \item Restaurant cards (exploration content)
+    \item Popular picks (supporting discovery)
+\end{enumerate}
+
+\subsection{Restaurant Card Hierarchy}
+\begin{enumerate}
+    \item Restaurant name (identification)
+    \item Rating + delivery time (decision factors)
+    \item Cuisine type (categorization)
+    \item Location + price (supporting detail)
+\end{enumerate}
+Users can make a go/no-go decision without reading past the second line.
+
+% ===================================================================
+\section{Flexibility and Robustness}
+
+\subsection{Multiple Paths to the Same Goal}
+\begin{itemize}
+    \item Browse: Home $\to$ Categories $\to$ Restaurant $\to$ Menu
+    \item Search: Direct text search for dishes or restaurants
+    \item Discover: Trending searches, popular near you, recommendations
+    \item Reorder: One-tap reorder from order history
+\end{itemize}
+
+\subsection{Robustness}
+\begin{itemize}
+    \item Multiple login methods (Phone OTP, Google, Apple)
+    \item Saved addresses and payment methods reduce friction
+    \item Veg/Non-Veg filter for dietary preferences
+    \item Multiple sort and filter options
+    \item Contact options for both restaurant and delivery partner
+\end{itemize}
+
+% ===================================================================
+\newpage
+\section{Screen-by-Screen Design with Screenshots}
+
+Each screen is shown with its screenshot and the key HCI concepts applied.
+
+% --- SPLASH ---
+\subsection{Screen 1: Splash Screen}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/01_splash.png}}
+\captionof{figure}{Splash Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Visibility of System Status (Nielsen H1): Loading animation provides feedback
+    \item Aesthetic and Minimalist Design (Nielsen H8): Clean gradient with logo
+    \item Auto-transitions to onboarding after 2.5 seconds
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- ONBOARDING ---
+\subsection{Screen 2: Onboarding (3 Slides)}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.30\textwidth}
+    \fbox{\includegraphics[width=\linewidth]{screenshots/02_onboarding_1.png}}
+    \caption{Browse}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.30\textwidth}
+    \fbox{\includegraphics[width=\linewidth]{screenshots/02_onboarding_2.png}}
+    \caption{Order}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.30\textwidth}
+    \fbox{\includegraphics[width=\linewidth]{screenshots/02_onboarding_3.png}}
+    \caption{Enjoy}
+\end{subfigure}
+\caption{Onboarding Screens}
+\end{figure}
+
+\begin{itemize}[noitemsep]
+    \item Learnability: Introduces app in 3 simple steps
+    \item User Control (Nielsen H3): Skip button for returning users
+    \item System Status (Nielsen H1): Progress dots show current position
+    \item Closure: ``Get Started'' on final slide
+    \item Serial Position: Most memorable content at start and end
+\end{itemize}
+
+\newpage
+
+% --- LOGIN ---
+\subsection{Screen 3: Login / Sign Up}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/03_login.png}}
+\captionof{figure}{Login Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Error Prevention (Nielsen H5): Real-time phone validation
+    \item Error Recovery (Nielsen H9): Specific error messages
+    \item Flexibility (Nielsen H7): Phone OTP, Google, and Apple sign-in
+    \item Feedback (Shneiderman R3): OTP auto-advance, focus states
+    \item Consistency (Shneiderman R1): Same button/form patterns
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- HOME ---
+\subsection{Screen 4: Home Dashboard}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/04_home.png}}
+\captionof{figure}{Home Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Inverted Pyramid: Location + search at top, then banners, categories, restaurants
+    \item 80-20 Rule: Browse and search dominate the screen
+    \item Recognition over Recall (Nielsen H6): Emoji categories, visual cards
+    \item Real-world Match (Nielsen H2): Natural language, food imagery
+    \item Memory Load (Shneiderman R8): Cart badge, notification badge
+    \item Serial Position: Home is first in bottom nav
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- SEARCH ---
+\subsection{Screen 5: Search Screen}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/05_search.png}}
+\captionof{figure}{Search Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Recognition over Recall (Nielsen H6): Recent searches, trending items
+    \item Flexibility (Nielsen H7): Filter pills, sort options, cuisine filters
+    \item User Control (Shneiderman R7): Multiple filter/sort combinations
+    \item Reversal (Shneiderman R6): Clear recent searches
+    \item Consistency: Same pill/chip styling across app
+\end{itemize}
+\end{minipage}
+
+\newpage
+
+% --- RESTAURANT ---
+\subsection{Screen 6: Restaurant Listing and Menu}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/06_restaurant.png}}
+\captionof{figure}{Restaurant Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Mental Model: Menu organized like a real restaurant
+    \item Real-world Match (Nielsen H2): Veg/Non-Veg standard symbols
+    \item Memory Load (Shneiderman R8): Floating cart bar shows count + total
+    \item Tesler's Law: Customization in popup, not inline
+    \item User Control: Veg/Non-Veg toggle, category pills, Add buttons
+    \item Inverted Pyramid: Restaurant info first, then menu
+\end{itemize}
+\end{minipage}
+
+\vspace{12pt}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/06b_customize.png}}
+\captionof{figure}{Item Customization Popup}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Tesler's Law: Complex customization contained in bottom sheet
+    \item Smart Defaults: Regular size pre-selected
+    \item User Control: Size (radio), toppings (checkboxes), special instructions
+    \item Freedom (Nielsen H3): Close button, quantity controls
+    \item Closure: ``Add Item'' button confirms the action
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- CART ---
+\subsection{Screen 7: Cart and Checkout}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/07_cart.png}}
+\captionof{figure}{Cart Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Tesler's Law: Bill auto-calculated by the system
+    \item Reversal (Shneiderman R6): Quantity +/- controls, change address
+    \item Feedback (Shneiderman R3): Coupon success message
+    \item Error Prevention (Nielsen H5): Full breakdown before checkout
+    \item Closure (Shneiderman R4): Prominent ``Place Order'' button
+    \item Inverted Pyramid: Items, then billing, then action
+\end{itemize}
+\end{minipage}
+
+\newpage
+
+% --- CONFIRMATION ---
+\subsection{Screen 8: Order Confirmation}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/08_confirmation.png}}
+\captionof{figure}{Order Confirmation}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Closure: Green checkmark, confetti animation, ``Order Placed!''
+    \item Feedback (Shneiderman R3): Order ID, restaurant, ETA, total
+    \item Dialog Yield Closure (Shneiderman R4): Clear end of ordering sequence
+    \item Next steps: ``Track Your Order'' and ``Back to Home'' buttons
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- TRACKING ---
+\subsection{Screen 9: Order Tracking}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/09_tracking.png}}
+\captionof{figure}{Order Tracking}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item System Status (Nielsen H1): 4-step progress with ETA countdown
+    \item Mental Model: Map tracking mirrors Uber/Google Maps
+    \item Real-world Match (Nielsen H2): Rider icon, restaurant and home markers
+    \item User Control (Shneiderman R7): Contact delivery partner, cancel order
+    \item Closure: Steps complete with green checkmarks
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- ORDERS ---
+\subsection{Screen 10: Order History}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/10_orders.png}}
+\captionof{figure}{Order History}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Shortcuts (Shneiderman R2): ``Reorder'' button for repeat ordering
+    \item Recognition (Nielsen H6): Order cards show restaurant, items, status, date
+    \item Closure: Status badges (Delivered, Cancelled, Preparing)
+    \item Consistency: Same card pattern as rest of app
+    \item Flexibility: Tabs for Ongoing/Past orders; rate and review option
+\end{itemize}
+\end{minipage}
+
+\newpage
+
+% --- PROFILE ---
+\subsection{Screen 11: Profile / Account}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/11_profile.png}}
+\captionof{figure}{Profile Screen}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item 80-20 Rule: Secondary features in a clear menu hierarchy
+    \item Shortcuts: Saved addresses, linked payments, wallet balance
+    \item User Control: Notification toggle, edit profile, manage payments
+    \item Consistency: Card-based sections, same icon styling
+    \item Serial Position (Recency): Profile at last position in bottom nav
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- HELP ---
+\subsection{Screen 12: Help and Support}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/12_help.png}}
+\captionof{figure}{Help and Support}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item Help and Documentation (Nielsen H10): FAQ accordion, live chat, call, email
+    \item Error Recovery: Issue reporting form with order dropdown
+    \item Flexibility: Three contact methods for different preferences
+    \item Recognition: Visual icons for quick actions
+    \item 80-20: Help is accessible but secondary
+\end{itemize}
+\end{minipage}
+
+\vspace{16pt}
+
+% --- NOTIFICATIONS ---
+\subsection{Screen 13: Notifications}
+
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{0pt}
+\begin{center}
+\fbox{\includegraphics[width=\linewidth]{screenshots/13_notifications.png}}
+\captionof{figure}{Notifications}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.54\textwidth}
+\vspace{0pt}
+\textbf{HCI Concepts:}
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item System Status (Nielsen H1): Order updates with timestamps
+    \item Recognition: Visual distinction between read and unread
+    \item Categorization: Distinct icons for order vs promotional notifications
+    \item User Control: ``Mark all read'' button
+    \item Consistency: Same list pattern and styling as rest of app
+\end{itemize}
+\end{minipage}
+
+% ===================================================================
+\newpage
+\section{User Flow}
+
+\subsection{Primary Flow}
+
+\begin{center}
+Splash $\to$ Onboarding $\to$ Login $\to$ \textbf{Home} $\to$ \textbf{Restaurant} $\to$ \textbf{Cart} $\to$ \textbf{Confirmation} $\to$ \textbf{Tracking}
+\end{center}
+
+\subsection{Alternative Flows}
+\begin{itemize}
+    \item \textbf{Search Flow:} Home $\to$ Search $\to$ Restaurant $\to$ Cart $\to$ Confirmation
+    \item \textbf{Reorder Flow:} Orders $\to$ Reorder $\to$ Cart $\to$ Confirmation
+    \item \textbf{Category Flow:} Home $\to$ Category $\to$ Restaurant $\to$ Cart $\to$ Confirmation
+\end{itemize}
+
+% ===================================================================
+\section{Conclusion}
+
+The QuickBite food delivery app demonstrates a comprehensive application of HCI principles:
+
+\begin{itemize}
+    \item \textbf{80-20 Rule:} Core ordering flow receives primary design attention
+    \item \textbf{Shneiderman's 8 Rules:} Consistency, feedback, closure, error handling, reversal, memory load reduction
+    \item \textbf{Nielsen's 10 Heuristics:} System visibility, real-world match, user control, aesthetics, help
+    \item \textbf{Tesler's Law:} Computation and decisions offloaded to the system
+    \item \textbf{Serial Position:} Critical actions at start/end of navigation
+    \item \textbf{Mental Models:} Design matches restaurant, e-commerce, and delivery tracking expectations
+    \item \textbf{Closure:} Confirmation screens and success messages at every critical point
+    \item \textbf{Inverted Pyramid:} Most important content first on every screen
+    \item \textbf{Learnability:} Familiar patterns, consistent interactions, onboarding
+    \item \textbf{Flexibility and Robustness:} Multiple paths, auth methods, filters, contact options
+\end{itemize}
+
+The interactive prototype (HTML/CSS/JS) provides a hands-on demonstration of all 12 screens with working navigation, animations, and interactive elements.
+
+\end{document}

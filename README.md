@@ -8,6 +8,8 @@
 | **Roll No** | CS23B1076 |
 | **Course** | Human-Computer Interaction (HCI) |
 
+**Live Demo:** [https://quickbite-4h67.onrender.com](https://quickbite-4h67.onrender.com)
+
 ---
 
 ## About
@@ -38,6 +40,10 @@ QuickBite is an interactive food delivery mobile app prototype built with HTML, 
 - No server or installation required
 
 ### Steps
+**Option 1 — Live Demo (no setup):**
+Visit [https://quickbite-4h67.onrender.com](https://quickbite-4h67.onrender.com)
+
+**Option 2 — Run locally:**
 1. Clone the repository:
    ```
    git clone https://github.com/Niranjan7771/HCI_MID.git

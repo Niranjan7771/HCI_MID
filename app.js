@@ -36,10 +36,8 @@ function updateBottomNav(screenId) {
     });
 }
 
-// ---- Splash Screen Auto-transition ----
-setTimeout(() => {
-    navigateTo('onboarding-screen');
-}, 2500);
+// ---- Splash Screen ----
+// Navigation handled by buttons in splash-screen (Let's Eat! → onboarding, Log in → login)
 
 // ---- Onboarding ----
 let currentSlide = 0;

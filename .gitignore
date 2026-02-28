@@ -14,6 +14,7 @@ report.html
 # Screenshot capture scripts
 capture_screens.py
 capture_selenium.py
+recapture.py
 
 # Python cache
 __pycache__/

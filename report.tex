@@ -60,7 +60,7 @@
 
         {\LARGE\bfseries HCI Design Report}\\[6pt]
         {\large Interactive Design Layout \& Scheme}\\[4pt]
-        {\normalsize Mid-Semester Design Project}
+        {\normalsize Mid-Semester Design Activity}
 
         \vspace{3cm}
 
@@ -68,7 +68,7 @@
             \textbf{Name:} & Y.Niranjan \\[6pt]
             \textbf{Roll No:} & CS23B1076 \\[6pt]
             \textbf{Course:} & Human-Computer Interaction (HCI) \\[6pt]
-            \textbf{Assignment:} & Mid-Semester Design Project \\[6pt]
+            \textbf{Assignment:} & Mid-Semester Design Activity \\[6pt]
             \textbf{Domain:} & Online Food Delivery Application \\[6pt]
             \textbf{Date:} & February 28, 2026 \\
         \end{tabular}
@@ -813,6 +813,64 @@ Splash $\to$ Onboarding $\to$ Login $\to$ \textbf{Home} $\to$ \textbf{Restaurant
     \item \textbf{Reorder Flow:} Orders $\to$ Reorder $\to$ Cart $\to$ Confirmation
     \item \textbf{Category Flow:} Home $\to$ Category $\to$ Restaurant $\to$ Cart $\to$ Confirmation
 \end{itemize}
+
+% ===================================================================
+\newpage
+\section{How to Test the Prototype}
+
+The QuickBite prototype is a fully interactive HTML/CSS/JS application. Follow the steps below to run and test it.
+
+\subsection{Prerequisites}
+\begin{itemize}
+    \item A modern web browser (Google Chrome, Firefox, or Microsoft Edge)
+    \item No installation or server setup is required
+\end{itemize}
+
+\subsection{Running the Prototype}
+\begin{enumerate}
+    \item Clone or download the repository from GitHub:
+    \begin{verbatim}
+    git clone https://github.com/Niranjan7771/HCI_MID.git
+    \end{verbatim}
+    \item Open the folder \texttt{HCI\_MID/}
+    \item Double-click \texttt{index.html} to open it in your default browser
+    \item The app will start with the Splash Screen and auto-transition to Onboarding
+\end{enumerate}
+
+\subsection{Navigating the Screens}
+\begin{itemize}
+    \item \textbf{Onboarding:} Swipe through 3 slides using Next/dots, or click Skip
+    \item \textbf{Login:} Enter any 10-digit phone number, then fill the OTP boxes
+    \item \textbf{Home:} Browse categories, scroll through restaurants, tap banners
+    \item \textbf{Search:} Type in the search bar, use filter/sort pills
+    \item \textbf{Restaurant:} Browse menu, toggle Veg/Non-Veg, tap Add to add items, tap an item for customization popup
+    \item \textbf{Cart:} Adjust quantities, apply coupon code \texttt{WELCOME50}, tap Place Order
+    \item \textbf{Confirmation:} View order details, tap Track Your Order
+    \item \textbf{Tracking:} See live progress steps, map, and delivery partner info
+    \item \textbf{Orders / Profile / Help / Notifications:} Accessible via bottom navigation or header icons
+\end{itemize}
+
+\subsection{Keyboard Shortcuts (Quick Navigation)}
+The prototype includes keyboard shortcuts for direct screen access during testing:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{c l | c l}
+\toprule
+\textbf{Key} & \textbf{Screen} & \textbf{Key} & \textbf{Screen} \\
+\midrule
+1 & Splash & 6 & Restaurant \\
+2 & Onboarding & 7 & Cart \\
+3 & Login & 8 & Order Confirmation \\
+4 & Home & 9 & Order Tracking \\
+5 & Search & 0 & Orders / History \\
+\bottomrule
+\end{tabular}
+\caption{Keyboard shortcuts for quick screen navigation}
+\end{table}
+
+A navigation guide panel is also available on the left side of the prototype for click-based direct access to any screen.
 
 % ===================================================================
 \section{Conclusion}

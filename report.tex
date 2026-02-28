@@ -440,6 +440,66 @@ Users can make a go/no-go decision without reading past the second line.
 \end{itemize}
 
 % ===================================================================
+\section{Asimov's Laws of Robotics Applied to UI Design}
+
+Asimov's Three Laws of Robotics, when adapted to HCI, provide a framework for designing systems that prioritize user safety, obedience to intent, and self-preservation of state.
+
+\subsection{First Law: Do Not Harm the User}
+The system must never cause harm (data loss, confusion, wasted time, or frustration) to the user.
+\begin{itemize}
+    \item \textbf{No data loss:} Cart contents persist across screen transitions. Users never lose items they have added.
+    \item \textbf{Clear error prevention:} Phone validation prevents submission of invalid data. OTP auto-advance reduces misentry.
+    \item \textbf{Transparent pricing:} Full bill breakdown (item total, delivery fee, taxes, discount) shown before checkout --- no hidden charges.
+    \item \textbf{Confirmation before irreversible actions:} Order placement requires explicit ``Place Order'' tap with full summary visible.
+    \item \textbf{Safe defaults:} Default delivery address (Home) and default item size (Regular) prevent accidental wrong orders.
+\end{itemize}
+
+\subsection{Second Law: Obey the User's Intent}
+The system must faithfully execute what the user wants, unless doing so would violate the First Law.
+\begin{itemize}
+    \item \textbf{Direct response:} Tapping ``Add'' immediately adds the item to cart with visual confirmation (badge update).
+    \item \textbf{Respect preferences:} Veg/Non-Veg toggle filters the menu and persists the user's dietary preference.
+    \item \textbf{Flexible navigation:} Back buttons, bottom nav, and skip buttons all honor the user's navigational intent.
+    \item \textbf{Coupon application:} When user applies a coupon, the discount is immediately reflected in the bill.
+    \item \textbf{Cancel order:} The tracking screen provides a cancel button --- honoring the user's change of mind.
+\end{itemize}
+
+\subsection{Third Law: Preserve System State}
+The system must protect its own consistent state, unless doing so conflicts with the First or Second Law.
+\begin{itemize}
+    \item \textbf{State persistence:} Cart state, selected address, and login status are maintained across navigation.
+    \item \textbf{Consistent UI state:} Bottom navigation always reflects the current active screen. Cart badge always shows the correct count.
+    \item \textbf{Graceful transitions:} Screen transitions use smooth animations --- the UI never enters a broken or intermediate visual state.
+    \item \textbf{Order tracking integrity:} The tracking progress only moves forward (Placed $\to$ Preparing $\to$ Out $\to$ Delivered), maintaining logical consistency.
+\end{itemize}
+
+% ===================================================================
+\section{Balancing Tesler's Law and the Vital Few (80-20 Rule)}
+
+The assignment emphasizes that the design should strike the right balance between Tesler's Law (conservation of complexity) and the Vital Few / 80-20 Rule. Here is how QuickBite achieves this balance:
+
+\subsection{Where Tesler's Law Dominates (System Absorbs Complexity)}
+\begin{itemize}
+    \item \textbf{Bill computation:} The system auto-calculates item totals, delivery fees, taxes, discounts, and grand total. The user sees only the final result.
+    \item \textbf{OTP auto-advance:} After entering a digit, the cursor automatically moves to the next box --- the system handles focus management.
+    \item \textbf{Address selection:} Previously saved addresses (Home, Work) appear as one-tap options rather than requiring re-entry.
+    \item \textbf{Smart defaults:} Regular size and default address are pre-selected, so the user only acts when they want to change something.
+\end{itemize}
+
+\subsection{Where the 80-20 Rule Dominates (Focus on Critical Features)}
+\begin{itemize}
+    \item \textbf{Core 20\%:} Browse $\to$ Search $\to$ Restaurant $\to$ Cart $\to$ Order $\to$ Track. These screens receive maximum design attention, occupy the most screen real estate, and are reachable in 1--2 taps.
+    \item \textbf{Supporting 80\%:} Profile, Help, Notifications, Order History are organized in bottom nav and accessible but never dominate the primary flow.
+\end{itemize}
+
+\subsection{The Balance}
+\begin{itemize}
+    \item For the \textbf{critical 20\%} features, Tesler's Law is applied aggressively --- the system absorbs as much complexity as possible (auto-calculation, smart defaults, auto-advance).
+    \item For the \textbf{supporting 80\%} features, minimal complexity is introduced --- simple list views, standard patterns, and secondary placement keep them out of the user's way.
+    \item The result: the most-used features are both \textbf{prominent} (80-20) and \textbf{effortless} (Tesler's), while secondary features remain accessible without adding cognitive load.
+\end{itemize}
+
+% ===================================================================
 \newpage
 \section{Screen-by-Screen Design with Screenshots}
 
@@ -888,8 +948,52 @@ The QuickBite food delivery app demonstrates a comprehensive application of HCI 
     \item \textbf{Inverted Pyramid:} Most important content first on every screen
     \item \textbf{Learnability:} Familiar patterns, consistent interactions, onboarding
     \item \textbf{Flexibility and Robustness:} Multiple paths, auth methods, filters, contact options
+    \item \textbf{Asimov's Laws:} User safety (no hidden charges, error prevention), obedience to intent (direct responses, cancel support), state preservation (persistent cart, consistent UI)
+    \item \textbf{Tesler's vs Vital Few Balance:} Critical 20\% features are both prominent and effortless; supporting 80\% are accessible but non-intrusive
 \end{itemize}
 
 The interactive prototype (HTML/CSS/JS) provides a hands-on demonstration of all 12 screens with working navigation, animations, and interactive elements.
+
+% ===================================================================
+\newpage
+\section{Additional Links}
+
+The following links provide access to the interactive prototype and source code:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l l}
+\toprule
+\textbf{Resource} & \textbf{Link} \\
+\midrule
+GitHub Repository & \url{https://github.com/Niranjan7771/HCI_MID} \\
+Prototype (index.html) & Clone repo and open \texttt{index.html} in browser \\
+LaTeX Source & \texttt{report.tex} in the repository \\
+\bottomrule
+\end{tabular}
+\caption{Project links and resources}
+\end{table}
+
+\subsection{How to Access the Prototype}
+\begin{enumerate}
+    \item Visit \url{https://github.com/Niranjan7771/HCI_MID}
+    \item Click \textbf{Code $\to$ Download ZIP} or run:
+    \begin{verbatim}
+    git clone https://github.com/Niranjan7771/HCI_MID.git
+    \end{verbatim}
+    \item Open \texttt{index.html} in any modern browser (Chrome, Firefox, Edge)
+    \item Navigate through all 12 screens using the bottom navigation bar, on-screen buttons, or keyboard shortcuts (keys 1--0)
+\end{enumerate}
+
+\subsection{Files in the Repository}
+\begin{itemize}
+    \item \texttt{index.html} --- Interactive prototype with 12 screens
+    \item \texttt{styles.css} --- Complete design system and styling
+    \item \texttt{app.js} --- Navigation logic and interactivity
+    \item \texttt{report.tex} --- LaTeX source for this report
+    \item \texttt{report.pdf} --- This compiled report
+    \item \texttt{screenshots/} --- All screen captures used in this report
+    \item \texttt{README.md} --- Project overview and testing instructions
+\end{itemize}
 
 \end{document}
